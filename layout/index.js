@@ -17,8 +17,6 @@ export default function index({ children }) {
     const [dataUser, setDataUser] = useState(null);
     useEffect(() => {
         setTimeout(() => {
-            let rol = JSON.parse(localStorage.getItem("data_user"));
-            rol = rol.user.tipo;
             setMenu([
                 {
                     id: 1,
@@ -35,7 +33,6 @@ export default function index({ children }) {
                     active: false,
                 },
             ]);
-            setDataUser(JSON.parse(localStorage.getItem("data_user")));
         }, 250);
     }, []);
 

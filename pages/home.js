@@ -28,8 +28,7 @@ import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import { thousandFormater } from "../utils/thousandformater";
 import { dataDefautlGraph } from "@/data/dataDashboardBase";
-import { configHeat } from "@/data/heatmap";
-import 'echarts/extension/bmap/bmap';
+import GoogleMaps from "@/components/heatMap";
 
 
 export const home = () => {
@@ -213,10 +212,7 @@ export const home = () => {
             <div className="item w-auto h-auto">
               <div className="card">
                 <h2 className="font-bold text-[#595959] text-[20px]">Mapa de Calor Madrid</h2>
-                <EChartsNextForReactCore
-                  option={configHeat}
-                  style={{ height: "400px", width: "100%" }}
-                />
+                <GoogleMaps />
               </div>
             </div>
             <div className="item w-auto h-auto">
@@ -229,43 +225,6 @@ export const home = () => {
               </div>
             </div>
             <div className="item w-auto h-auto flex flex-col gap-2 justify-center items-center">
-              <div className="card flex flex-col justify-center items-center gap-4">
-                <p className="font-bold text-[#595959]">
-                  Horas de actividad física
-                </p>
-                <div className="flex justify-center items-stretch w-full h-auto gap-2">
-                  <div className="flex justify-center items-center gap-2 flex-col w-auto h-auto">
-                    <div className="flex justify-center items-center gap-1">
-                      {timerDaysArray.map((item, index) => (
-                        <div className="clock">{item}</div>
-                      ))}
-                    </div>
-                    <p className="font-bold text-[#595959]">Días</p>
-                  </div>
-                  <div className="w-auto h-[60px] flex justify-center items-center points">
-                    :
-                  </div>
-                  <div className="flex justify-center items-center gap-2 flex-col w-auto h-auto">
-                    <div className="flex justify-center items-center gap-1">
-                      {timerHoursArray.map((item, index) => (
-                        <div className="clock">{item}</div>
-                      ))}
-                    </div>
-                    <p className="font-bold text-[#595959]">Horas</p>
-                  </div>
-                  <div className="w-auto h-[60px] flex justify-center items-center points">
-                    :
-                  </div>
-                  <div className="flex justify-center items-center gap-2 flex-col w-auto h-auto">
-                    <div className="flex justify-center items-center gap-1">
-                      {timerMinutesArray.map((item, index) => (
-                        <div className="clock">{item}</div>
-                      ))}
-                    </div>
-                    <p className="font-bold text-[#595959]">Minutos</p>
-                  </div>
-                </div>
-              </div>
               <div className="card flex flex-col justify-center items-center gap-4">
                 <p className="font-bold text-[#595959]">Calorías quemadas</p>
                 <div className="flex justify-center items-center gap-2.5">

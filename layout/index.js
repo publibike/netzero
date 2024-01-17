@@ -19,69 +19,22 @@ export default function index({ children }) {
         setTimeout(() => {
             let rol = JSON.parse(localStorage.getItem("data_user"));
             rol = rol.user.tipo;
-            if (rol == "super") {
-                setMenu([
-                    {
-                        id: 1,
-                        name: "Dashboard",
-                        icon: "/icons/dashboard.svg",
-                        link: "/home",
-                        active: true,
-                    },
-                    {
-                        id: 2,
-                        name: "Usuarios registrados",
-                        icon: "/icons/usuarios_registrados.svg",
-                        link: "/users",
-                        active: false,
-                    },
-                    {
-                        id: 3,
-                        name: "Empresas registradas",
-                        icon: "/icons/empresas_registradas.svg",
-                        link: "/companies",
-                        active: false,
-                    },
-                    {
-                        id: 4,
-                        name: "Registrar Administrador",
-                        icon: "/icons/registrar_administrador.svg",
-                        link: "/admin",
-                        active: false,
-                    },
-                    {
-                        id: 5,
-                        name: "Registrar Empresa",
-                        icon: "/icons/registrar_empresa.svg",
-                        link: "/companies/create",
-                        active: false,
-                    },
-                ]);
-            } else {
-                setMenu([
-                    {
-                        id: 1,
-                        name: "Dashboard",
-                        icon: "/icons/dashboard.svg",
-                        link: "/home",
-                        active: true,
-                    },
-                    {
-                        id: 2,
-                        name: "Usuarios registrados",
-                        icon: "/icons/usuarios_registrados.svg",
-                        link: "/users",
-                        active: false,
-                    },
-                    {
-                        id: 5,
-                        name: "Registrar Comunidades",
-                        icon: "/icons/registrar_empresa.svg",
-                        link: "/communities",
-                        active: false,
-                    },
-                ]);
-            }
+            setMenu([
+                {
+                    id: 1,
+                    name: "Dashboard",
+                    icon: "/icons/dashboard.svg",
+                    link: "/home",
+                    active: true,
+                },
+                {
+                    id: 4,
+                    name: "Configuración",
+                    icon: "/icons/registrar_administrador.svg",
+                    link: "/admin",
+                    active: false,
+                },
+            ]);
             setDataUser(JSON.parse(localStorage.getItem("data_user")));
         }, 250);
     }, []);
@@ -117,9 +70,8 @@ export default function index({ children }) {
                     style={{ marginTop: isActive ? "0px" : "20px" }}
                 >
                     {isActive && (
-                        <h3 className="text-[#01D9AD] font-bold text-xl mb-3">Comunidades</h3>
+                        <h3 className="text-[#01D9AD] font-bold text-xl mb-3">NET ZERO</h3>
                     )}
-                    <img src="/img/logo_u.png" alt="logo" className="w-[25%] m-auto" />
                 </div>
                 <div className="sidebar__menu">
                     <ul className="flex flex-col gap-2 w-[85%] m-auto">
@@ -161,7 +113,7 @@ export default function index({ children }) {
                                 Bienvenido
                             </p>
                             <p className="text-[#8D8D8D] text-[22px]">
-                                {dataUser?.user?.empresa}
+                                NET ZERO USER
                             </p>
                         </div>
                         <button

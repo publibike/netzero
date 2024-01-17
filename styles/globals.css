@@ -91,7 +91,7 @@ body {
 }
 .login-button:hover,
 .login-button:focus {
-  background: transparent linear-gradient(90deg, #01d9ad 0%, #00b3d8 100%) 0% 0%
+  background: transparent linear-gradient(90deg, #01d9ad 0%, #000 100%) 0% 0%
     no-repeat padding-box;
   color: #fff;
   box-shadow: 0px 3px 10px #00000014;

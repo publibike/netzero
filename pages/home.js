@@ -12,8 +12,6 @@ import {
   ToolboxComponent,
 } from "echarts/components";
 import { CanvasRenderer } from "echarts/renderers";
-import { GetAdminDashboardApi } from "@/my-api";
-import { useQuery } from "react-query";
 import Layout from "../layout";
 echarts.use([
   TooltipComponent,
@@ -29,23 +27,19 @@ echarts.use([
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import { thousandFormater } from "../utils/thousandformater";
+import { dataDefautlGraph } from "@/data/dataDashboardBase";
+import { configHeat } from "@/data/heatmap";
+import 'echarts/extension/bmap/bmap';
+
 
 export const home = () => {
+  const [dataDashboard, setDataDashboard] = useState(dataDefautlGraph);
   const [filters, setFilters] = useState({
     "departamento": null,
     "vehicle": null,
     "date_start": null,
     "date_end": null
   });
-
-
-  // Query
-  const {
-    data: dataDashboard,
-    isLoading: isLoadingDataDashboard,
-    isError: isErrorDataDashboard,
-    refetch: refetchDataDashboard,
-  } = useQuery(["dataDashboard", filters], () => GetAdminDashboardApi(filters));
 
 
 
@@ -101,26 +95,6 @@ export const home = () => {
     }
   }, [dataDashboard]);
 
-  if (isLoadingDataDashboard) {
-    return (
-      <Layout>
-        <div className="flex justify-center items-center h-screen">
-          <span class="loader"></span>
-        </div>
-      </Layout>
-    );
-  }
-
-  if (isErrorDataDashboard) {
-    return (
-      <Layout>
-        <div className="flex justify-center items-center h-screen">
-          <p>Error...</p>
-        </div>
-      </Layout>
-    );
-  }
-
   return (
     <Layout>
       <div
@@ -146,47 +120,6 @@ export const home = () => {
               <option value="Patinete eléctrico">Patinete eléctrico</option>
               <option value="Bicicleta eléctrica">Bicicleta eléctrica</option>
               <option value="Moto eléctrica">Moto eléctrica</option>
-            </select>
-          </div>
-          <div className="w-full h-auto flex justify-center items-center">
-            <select className="selectPicker" onChange={(e) => handleFilters(e, "departamento")} value={filters.departamento}>
-              <option value="0" disabled>
-                Escoge un departamento
-              </option>
-              <option value="" disabled selected>Escoge un departamento</option>
-              <option value="Antioquia">Antioquia</option>
-              <option value="Atlántico">Atlántico</option>
-              <option value="Bogotá">Bogotá</option>
-              <option value="Bolívar">Bolívar</option>
-              <option value="Boyacá">Boyacá</option>
-              <option value="Caldas">Caldas</option>
-              <option value="Caquetá">Caquetá</option>
-              <option value="Casanare">Casanare</option>
-              <option value="Cauca">Cauca</option>
-              <option value="Cesar">Cesar</option>
-              <option value="Chocó">Chocó</option>
-              <option value="Córdoba">Córdoba</option>
-              <option value="Cundinamarca">Cundinamarca</option>
-              <option value="Guainía">Guainía</option>
-              <option value="Guaviare">Guaviare</option>
-              <option value="Huila">Huila</option>
-              <option value="La Guajira">La Guajira</option>
-              <option value="Magdalena">Magdalena</option>
-              <option value="Meta">Meta</option>
-              <option value="Nariño">Nariño</option>
-              <option value="Norte de Santander">Norte de Santander</option>
-              <option value="Putumayo">Putumayo</option>
-              <option value="Quindío">Quindío</option>
-              <option value="Risaralda">Risaralda</option>
-              <option value="San Andrés y Providencia">
-                San Andrés y Providencia
-              </option>
-              <option value="Santander">Santander</option>
-              <option value="Sucre">Sucre</option>
-              <option value="Tolima">Tolima</option>
-              <option value="Valle del Cauca">Valle del Cauca</option>
-              <option value="Vaupés">Vaupés</option>
-              <option value="Vichada">Vichada</option>
             </select>
           </div>
         </div>
@@ -276,19 +209,12 @@ export const home = () => {
         </div>
         {/*Section 2*/}
         <div className="w-full h-auto flex flex-col items-start gap-4 customSecBg2">
-          <div className="w-auto h-auto">
-            <p className="text-[25px] font-bold text-[#595959]">
-              Huella de calidad de vida
-            </p>
-          </div>
           <div className="w-full h-auto customMasonry">
             <div className="item w-auto h-auto">
               <div className="card">
-                <h2 className="font-bold text-[#595959] text-[20px]">
-                  Trafico por horas
-                </h2>
+                <h2 className="font-bold text-[#595959] text-[20px]">Mapa de Calor Madrid</h2>
                 <EChartsNextForReactCore
-                  option={dataDashboard?.graphHours}
+                  option={configHeat}
                   style={{ height: "400px", width: "100%" }}
                 />
               </div>
@@ -370,39 +296,14 @@ export const home = () => {
                     {thousandFormater(dataDashboard?.dataAdmin?.viajes)}
                   </p>
                 </div>
-              </div>
-            </div>
-            <div className="item w-auto h-auto">
-              <div className="card">
-                <h2 className="font-bold text-[#595959] text-[20px]">
-                  Usuarios
-                </h2>
-                <EChartsNextForReactCore
-                  option={dataDashboard?.generos}
-                  style={{ height: "400px", width: "100%" }}
-                />
-              </div>
-            </div>
-            <div className="item w-auto h-auto">
-              <div className="card">
-                <h2 className="font-bold text-[#595959] text-[20px]">
-                  Retencion/Abandono
-                </h2>
-                <EChartsNextForReactCore
-                  option={dataDashboard?.retention}
-                  style={{ height: "400px", width: "100%" }}
-                />
-              </div>
-            </div>
-            <div className="item w-auto h-auto">
-              <div className="card">
-                <h2 className="font-bold text-[#595959] text-[20px]">
-                  Categorización de usuarios
-                </h2>
-                <EChartsNextForReactCore
-                  option={dataDashboard?.graphAvg}
-                  style={{ height: "400px", width: "100%" }}
-                />
+                <p className="font-bold text-[#595959]">
+                  MW/H
+                </p>
+                <div className="flex w-auto min-w-[200px] h-auto px-1 justify-center items-center box-border border-2 border-[#C6C6C6] rounded-[10px]">
+                  <p className="font-bold text-[30px] text-[#C6C6C6] m-0">
+                    1000
+                  </p>
+                </div>
               </div>
             </div>
             <div className="item w-auto h-auto">
@@ -416,74 +317,8 @@ export const home = () => {
                 />
               </div>
             </div>
-            <div className="item w-auto h-auto">
-              <div className="card">
-                <h2 className="font-bold text-[#595959] text-[20px]">
-                  Usuarios
-                </h2>
-                <EChartsNextForReactCore
-                  option={dataDashboard?.activeUsers}
-                  style={{ height: "400px", width: "100%" }}
-                />
-              </div>
-            </div>
           </div>
         </div>
-        {/*Section 3*/}
-        <div className="w-full h-auto flex flex-col items-start gap-4 customSecBg">
-          <div className="w-auto h-auto">
-            <p className="text-[25px] font-bold text-[#FFFFFF]">
-              Huella económica {dataDashboard?.dataAdmin?.spain === "España" ? "en España" : "en Colombia"}
-            </p>
-          </div>
-          <div className="w-full h-auto">
-            <div className="w-full h-auto">
-              <div className="card flex  justify-center items-center gap-4">
-                <div>
-                  <p className="font-bold text-[#595959]">
-                    {
-                      dataDashboard.dataAdmin.spain === "España" ? "Ahorro Metro" : "Ahorro SITP"
-                    }
-                  </p>
-                  <div className="flex w-auto min-w-[200px] h-auto px-1 justify-center items-center box-border border-2 border-[#C6C6C6] rounded-[10px]">
-                    <p className="font-bold text-[30px] text-[#C6C6C6] m-0">
-                      {dataDashboard?.dataAdmin?.spain === "España" ? dataDashboard?.dataAdmin?.ahorroMetro : dataDashboard?.dataAdmin?.ahorroSITP}
-                    </p>
-                  </div>
-                </div>
-                <div>
-                  <p className="font-bold text-[#595959]">
-                    {
-                      dataDashboard.dataAdmin.spain === "España" ? "Ahorro Bus" : "Ahorro Transmilenio"
-                    }
-                  </p>
-                  <div className="flex w-auto min-w-[200px] h-auto px-1 justify-center items-center box-border border-2 border-[#C6C6C6] rounded-[10px]">
-                    <p className="font-bold text-[30px] text-[#C6C6C6] m-0">
-                      {dataDashboard?.dataAdmin?.spain === "España" ? dataDashboard?.dataAdmin?.ahorroBus : dataDashboard?.dataAdmin?.ahorroTrans}
-                    </p>
-                  </div>
-                </div>
-                {
-                  !dataDashboard.dataAdmin.spain && (
-                    <div>
-                      <p className="font-bold text-[#595959]">
-                        {
-                          "Ahorro Metro Medellín"
-                        }
-                      </p>
-                      <div className="flex w-auto min-w-[200px] h-auto px-1 justify-center items-center box-border border-2 border-[#C6C6C6] rounded-[10px]">
-                        <p className="font-bold text-[30px] text-[#C6C6C6] m-0">
-                          {dataDashboard?.dataAdmin?.AhorroMetroMede}
-                        </p>
-                      </div>
-                    </div>
-                  )
-                }
-              </div>
-            </div>
-          </div>
-        </div>
-        {/*End Sections*/}
       </div>
     </Layout>
   );

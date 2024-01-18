@@ -122,6 +122,41 @@ export const home = () => {
             </select>
           </div>
         </div>
+
+        <div className="w-full h-auto flex flex-col items-start gap-4 customSecBg">
+          <div className="w-auto h-auto">
+            <p className="text-[25px] font-bold text-[#FFFFFF]">
+              Caes Estimados
+            </p>
+          </div>
+          <div className="w-full h-auto">
+            <div className="w-full h-auto">
+              <div className="card flex  justify-center items-center gap-4">
+                <div>
+                  <p className="font-bold text-[#595959]">
+                    MW/H
+                  </p>
+                  <div className="flex w-auto min-w-[200px] h-auto px-1 justify-center items-center box-border border-2 border-[#C6C6C6] rounded-[10px]">
+                    <p className="font-bold text-[30px] text-[#C6C6C6] m-0">
+                      1000
+                    </p>
+                  </div>
+                </div>
+                <div>
+                  <p className="font-bold text-[#595959]">
+                    Ahorro MW/H
+                  </p>
+                  <div className="flex w-auto min-w-[200px] h-auto px-1 justify-center items-center box-border border-2 border-[#C6C6C6] rounded-[10px]">
+                    <p className="font-bold text-[30px] text-[#C6C6C6] m-0">
+                      € 70,000
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/*End Sections*/}
         {/*Start Sections*/}
         {/*Section 1*/}
         <div className="w-full h-auto flex flex-col items-start gap-4 customSecBg">
@@ -224,21 +259,6 @@ export const home = () => {
                 />
               </div>
             </div>
-            <div className="item w-auto h-auto flex flex-col gap-2 justify-center items-center">
-              <div className="card flex flex-col justify-center items-center gap-4">
-                <p className="font-bold text-[#595959]">Calorías quemadas</p>
-                <div className="flex justify-center items-center gap-2.5">
-                  <img
-                    src="icons/apple.svg"
-                    alt="Apple"
-                    className="w-[30px] h-[30px]"
-                  />
-                  <p className="font-bold text-[30px] text-[#C6C6C6]">
-                    {thousandFormater(dataDashboard?.dataAdmin?.cal)} kcal
-                  </p>
-                </div>
-              </div>
-            </div>
             <div className="item w-auto h-auto">
               <div className="card flex flex-col justify-center items-center gap-4">
                 <p className="font-bold text-[#595959]">KMs recorridos</p>
@@ -253,14 +273,6 @@ export const home = () => {
                 <div className="flex w-auto min-w-[200px] h-auto px-1 justify-center items-center box-border border-2 border-[#C6C6C6] rounded-[10px]">
                   <p className="font-bold text-[30px] text-[#C6C6C6] m-0">
                     {thousandFormater(dataDashboard?.dataAdmin?.viajes)}
-                  </p>
-                </div>
-                <p className="font-bold text-[#595959]">
-                  MW/H
-                </p>
-                <div className="flex w-auto min-w-[200px] h-auto px-1 justify-center items-center box-border border-2 border-[#C6C6C6] rounded-[10px]">
-                  <p className="font-bold text-[30px] text-[#C6C6C6] m-0">
-                    1000
                   </p>
                 </div>
               </div>

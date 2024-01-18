@@ -33,12 +33,6 @@ const Form = () => {
 
     const onSubmit = (data) => {
         console.log(data);
-        mutation.mutate({
-            nombre: data.nombre,
-            email: data.email,
-            num_contacto: data.num_contacto,
-            pais: data.pais
-        });
     };
 
     return (

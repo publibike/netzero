@@ -50,12 +50,7 @@ const Form = () => {
 
 
     const onSubmit = (data) => {
-        mutation.mutate({
-            usuario: (data.usuario.toString()),
-            password: data.password,
-            type: data.type,
-            empresa: data.empresa
-        });
+       
     };
 
     return (

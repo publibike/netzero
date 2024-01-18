@@ -197,9 +197,7 @@ export default function EnhancedTable() {
 
     const onSubmit = (data) => {
         console.log(data);
-        mutation.mutate({
-            nombre: data.nombre,
-        });
+      
     };
 
 

@@ -113,12 +113,11 @@ export const home = () => {
               <option value="0" disabled selected>
                 Escoge un medio de transporte
               </option>
-              <option value="Transporte público">Transporte público</option>
-              <option value="Caminar">Caminar</option>
-              <option value="Bicicleta">Bicicleta</option>
-              <option value="Patinete eléctrico">Patinete eléctrico</option>
-              <option value="Bicicleta eléctrica">Bicicleta eléctrica</option>
-              <option value="Moto eléctrica">Moto eléctrica</option>
+              <option value="Furgonetas eléctricas">Furgonetas eléctricas</option>
+              <option value="Vehículos eléctricos">Vehículos eléctricos</option>
+              <option value="Vehiculos hibridos">Vehiculos hibridos</option>
+              <option value="Motos eléctricas (Cargobikes)">Motos eléctricas (Cargobikes)</option>
+              <option value="Bicicletas eléctricas">Bicicletas eléctricas</option>
             </select>
           </div>
         </div>
@@ -126,7 +125,7 @@ export const home = () => {
         <div className="w-full h-auto flex flex-col items-start gap-4 customSecBg">
           <div className="w-auto h-auto">
             <p className="text-[25px] font-bold text-[#FFFFFF]">
-              Caes Estimados
+              CAEs Estimados
             </p>
           </div>
           <div className="w-full h-auto">

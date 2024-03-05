@@ -125,7 +125,7 @@ export const home = () => {
         <div className="w-full h-auto flex flex-col items-start gap-4 customSecBg">
           <div className="w-auto h-auto">
             <p className="text-[25px] font-bold text-[#FFFFFF]">
-              CAEs Estimados
+            CAEs Estimados 
             </p>
           </div>
           <div className="w-full h-auto">
